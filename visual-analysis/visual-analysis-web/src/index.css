@@ -3,7 +3,9 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+li {
+  list-style: none;
+}
 body {
   background: url(./images/background.jpg) no-repeat top center;
   line-height: 1.15;
