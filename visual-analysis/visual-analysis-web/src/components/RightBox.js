@@ -1,6 +1,5 @@
-import "../css/rightBox.css"
-function RightBox () {
-
+import "../css/rightBox.css";
+function RightBox() {
   return (
     <div className="rightBox">
       <div className="panelR">
@@ -14,12 +13,12 @@ function RightBox () {
         <div className="panelfooterR"> </div>
       </div>
       <div className="panelR">
-        <h2>某图关于drugs</h2>
+        <h2>Pie chart</h2>
         <div className="pieR">图表</div>
         <div className="panelfooterR"> </div>
       </div>
     </div>
-  )
-};
+  );
+}
 
-export default RightBox
+export default RightBox;
