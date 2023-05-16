@@ -9,7 +9,8 @@ const formatTime = (date) => {
   const minutes = date.getMinutes()
   const seconds = date.getSeconds()
 
-  return `${year}年${month}月${day}日 ${hours}:${minutes}:${seconds}`
+
+  return `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`
 }
 
 const TimeDisplay = () => {
