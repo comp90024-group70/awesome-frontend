@@ -17,7 +17,7 @@
   height: 10px;
   border-left: 2px solid #02a6b5;
   border-top: 2px solid #02a6b5;
-  content: "";
+  content: '';
 }
 .panelR::after {
   position: absolute;
@@ -27,7 +27,7 @@
   height: 10px;
   border-right: 2px solid #02a6b5;
   border-top: 2px solid #02a6b5;
-  content: "";
+  content: '';
 }
 .panelR .panelfooterR {
   position: absolute;
@@ -43,7 +43,7 @@
   height: 10px;
   border-left: 2px solid #02a6b5;
   border-bottom: 2px solid #02a6b5;
-  content: "";
+  content: '';
 }
 .panelR .panelfooterR::after {
   position: absolute;
@@ -53,7 +53,7 @@
   height: 10px;
   border-right: 2px solid #02a6b5;
   border-bottom: 2px solid #02a6b5;
-  content: "";
+  content: '';
 }
 .panelR h2 {
   height: 0.6rem;
@@ -65,6 +65,7 @@
 }
 .panelR .chartR {
   height: 3rem;
+  background-color: pink;
 }
 .panelR .lineR {
   height: 3rem;
@@ -72,4 +73,5 @@
 }
 .panelR .pieR {
   height: 3rem;
+  background-color: pink;
 }

@@ -1,8 +1,7 @@
-import "../css/midBox.css";
-import Map from "../utils/Map";
-import MapComponent from "../utils/MapComponent";
+import "../css/midBox.css"
+import Map from "../utils/Map"
+function MidBox () {
 
-function MidBox() {
   return (
     <div className="midBox">
       <div className="number">
@@ -20,8 +19,9 @@ function MidBox() {
         </div>
       </div>
       <Map />
-    </div>
-  );
-}
 
-export default MidBox;
+    </div>
+  )
+};
+
+export default MidBox
