@@ -1,7 +1,7 @@
 import "../css/leftBox.css"
 import { useContext, useEffect } from 'react'
 import { PassedFlag } from '../components/MainBox'
-import { StateBarChart } from "../utils/StateBarChart"
+import { StateBarChart } from '../utils/StateBarChart'
 
 
 
