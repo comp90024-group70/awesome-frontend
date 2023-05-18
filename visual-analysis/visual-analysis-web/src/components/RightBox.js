@@ -1,5 +1,15 @@
 import "../css/rightBox.css"
+import { useContext, useEffect } from 'react'
+import { PassedFlag } from '../components/MainBox'
 function RightBox () {
+  const { flag } = useContext(PassedFlag)
+  // const { val } = props
+  useEffect(() => {
+    console.log(flag)
+  }, [flag])
+
+
+
 
   return (
     <div className="rightBox">

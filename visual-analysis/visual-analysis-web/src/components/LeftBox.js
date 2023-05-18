@@ -1,18 +1,31 @@
 import "../css/leftBox.css"
 import { useContext, useEffect } from 'react'
-import { PassedFlag } from '../utils/Map'
-import { StateBarChart } from "../assets/StateBarChart"
+import { PassedFlag } from '../components/MainBox'
+import { StateBarChart } from "../utils/StateBarChart"
 
 
 
 
 
-function LeftBox (props) {
-  const flag = useContext(PassedFlag)
-  const { val } = props
+function LeftBox () {
+  const { flag } = useContext(PassedFlag)
+  // const { val } = props
   useEffect(() => {
-    console.log(val)
-  }, [val])
+    console.log(flag)
+  }, [flag])
+
+  let ExactBarChartL
+  // let ExactLineChartL
+  // let ExactPieChartL
+  if (flag.Melbourne === false && flag.Sydney === false) {
+    ExactBarChartL = StateBarChart
+
+
+  } else if (flag.Melbourne === true && flag.Sydney === false) {
+    // ExactBarChartL = MelbourneChart
+  } else if (flag.Melbourne === false && flag.Sydney === true) {
+    // ExactBarChartL = SydneyChart
+  }
 
 
 
@@ -21,13 +34,10 @@ function LeftBox (props) {
       <div className="panelL">
         <h2>avg sentiment</h2>
         <div className="chartL">
-
-          <StateBarChart />
+          <ExactBarChartL />
 
         </div>
         <div className="panelfooterL"></div>
-
-
       </div>
       <div className="panelL">
         <h2>某图关于drugs</h2>
