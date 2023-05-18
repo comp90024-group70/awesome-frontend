@@ -1,6 +1,5 @@
 import "../css/midBox.css";
-import Map from "../utils/Map";
-import AustraliaMapComponent from "../utils/AustraliaMapComponent";
+
 function MidBox() {
   return (
     <div className="midBox">
@@ -18,7 +17,6 @@ function MidBox() {
           </ul>
         </div>
       </div>
-      <AustraliaMapComponent />
     </div>
   );
 }
