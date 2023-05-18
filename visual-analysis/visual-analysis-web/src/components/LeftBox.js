@@ -1,16 +1,14 @@
-import "../css/leftBox.css"
-import React, { useState, useEffect } from 'react'
-import ReactECharts from 'echarts-for-react'
-import axios from 'axios'
+import "../css/leftBox.css";
+import React, { useState, useEffect } from "react";
+import ReactECharts from "echarts-for-react";
+import axios from "axios";
+import WordCloudComponent from "../utils/WordCloudComponent";
+import TreeMapComponent from "../utils/TreeMapComponent";
 
-
-
-
-function LeftBox () {
-
-  const [data, setData] = useState([])
-  const [country, setCountry] = useState([])
-  const [sentiment, setSentiment] = useState([])
+function LeftBox() {
+  const [data, setData] = useState([]);
+  const [country, setCountry] = useState([]);
+  const [sentiment, setSentiment] = useState([]);
   // const [uniqueCountry, setUniqueCountry] = useState(new Set())
   // const [dic, setDic] = useState({})
   // const newSet = new Set(uniqueCountry)
@@ -26,28 +24,27 @@ function LeftBox () {
   //获取数据从url路径
   useEffect(() => {
     const interval = setInterval(() => {
-      axios.get('http://172.26.136.13:8000/api/v1/sentiment').then(res => {
-
-        setData(res.data.data)
-      })
-    }, 1000)
+      axios.get("http://172.26.136.13:8000/api/v1/sentiment").then((res) => {
+        setData(res.data.data);
+      });
+    }, 1000);
     return () => {
-      clearInterval(interval)
-    }
-  }, [])
+      clearInterval(interval);
+    };
+  }, []);
 
   //设置x轴和y轴的值 处理数据
   useEffect(() => {
-    const newCountries = []
-    const newSentiments = []
+    const newCountries = [];
+    const newSentiments = [];
     data.map((item) => {
-      newCountries.push(item.gcc)
-      newSentiments.push(item.sentiment_avg)
-    })
+      newCountries.push(item.gcc);
+      newSentiments.push(item.sentiment_avg);
+    });
     //收到20万条数据
-    setCountry(newCountries)
-    setSentiment(newSentiments)
-  }, [data])
+    setCountry(newCountries);
+    setSentiment(newSentiments);
+  }, [data]);
 
   // //设置x轴和y轴的值 处理数据
   // useEffect(() => {
@@ -83,7 +80,6 @@ function LeftBox () {
 
   //   setDic(initialDictionary)
 
-
   //   Object.entries(dic).forEach(([key, value]) => {
 
   //     newCountries2.push(key)
@@ -95,66 +91,93 @@ function LeftBox () {
   //   setSentiment(newSentiments)
   // }, [])
 
-
-
-
   //写入表格
   const getOption = () => {
     return {
       tooltip: {
-        trigger: 'axis'
+        trigger: "axis",
       },
       grid: {
-        left: '3%',
-        right: '4%',
-        bottom: '3%',
-        containLabel: true
+        left: "3%",
+        right: "4%",
+        bottom: "3%",
+        containLabel: true,
       },
       xAxis: {
-        type: 'category',
-        data: country
+        type: "category",
+        data: country,
       },
       yAxis: {
-        type: 'value'
+        type: "value",
       },
       series: [
         {
-          type: 'bar',
-          data: sentiment
-        }
-      ]
+          type: "bar",
+          data: sentiment,
+        },
+      ],
+    };
+  };
 
-    }
-  }
+  const fakeWordCloudData = [
+    { name: "Lorem", value: 10 },
+    { name: "Ipsum", value: 8 },
+    { name: "Dolor", value: 6 },
+    { name: "Sit", value: 7 },
+    { name: "Amet", value: 9 },
+    { name: "Consectetur", value: 5 },
+    { name: "Adipiscing", value: 4 },
+    { name: "Elit", value: 7 },
+    { name: "Sed", value: 6 },
+    { name: "Eiusmod", value: 8 },
+    { name: "Tempor", value: 5 },
+    { name: "Incididunt", value: 7 },
+    // Add more word objects as needed
+  ];
+
+  //Fake treemap data
+  const fakeTreeMapData = [
+    { name: "Lorem", value: 10 },
+    { name: "Ipsum", value: 8 },
+    { name: "Dolor", value: 6 },
+    { name: "Sit", value: 7 },
+    { name: "Amet", value: 9 },
+    { name: "Consectetur", value: 5 },
+    { name: "Adipiscing", value: 4 },
+    { name: "Elit", value: 7 },
+    { name: "Sed", value: 6 },
+    { name: "Eiusmod", value: 8 },
+    { name: "Tempor", value: 5 },
+    { name: "Incididunt", value: 7 },
+    // Add more data items as needed
+  ];
 
   return (
     <div className="leftBox">
       <div className="panelL">
         <h2>avg sentiment</h2>
         <div className="chartL">
-
-          < ReactECharts option={getOption()} style={{ height: "100%", width: "100%" }} />
-
-
+          <ReactECharts
+            option={getOption()}
+            style={{ height: "100%", width: "100%" }}
+          />
         </div>
         <div className="panelfooterL"></div>
-
-
       </div>
       <div className="panelL">
-        <h2>某图关于drugs</h2>
-        <div className="lineL">图表</div>
+        <div className="lineL">
+          <TreeMapComponent data={fakeTreeMapData} />
+        </div>
         <div className="panelfooterL"> </div>
       </div>
       <div className="panelL">
-        <h2>某图关于drugs</h2>
-        <div className="pieL">图表</div>
+        <div className="pieL">
+          <WordCloudComponent data={fakeWordCloudData} />
+        </div>
         <div className="panelfooterL"> </div>
       </div>
     </div>
-  )
-};
+  );
+}
 
-export default LeftBox
-
-
+export default LeftBox;

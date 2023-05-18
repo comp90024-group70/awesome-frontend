@@ -17,7 +17,7 @@
   height: 10px;
   border-left: 2px solid #02a6b5;
   border-top: 2px solid #02a6b5;
-  content: '';
+  content: "";
 }
 .panelL::after {
   position: absolute;
@@ -27,7 +27,7 @@
   height: 10px;
   border-right: 2px solid #02a6b5;
   border-top: 2px solid #02a6b5;
-  content: '';
+  content: "";
 }
 .panelL .panelfooterL {
   position: absolute;
@@ -43,7 +43,7 @@
   height: 10px;
   border-left: 2px solid #02a6b5;
   border-bottom: 2px solid #02a6b5;
-  content: '';
+  content: "";
 }
 .panelL .panelfooterL::after {
   position: absolute;
@@ -53,7 +53,7 @@
   height: 10px;
   border-right: 2px solid #02a6b5;
   border-bottom: 2px solid #02a6b5;
-  content: '';
+  content: "";
 }
 .panelL h2 {
   height: 0.6rem;
@@ -68,9 +68,7 @@
 }
 .panelL .lineL {
   height: 3rem;
-  background-color: pink;
 }
 .panelL .pieL {
   height: 3rem;
-  background-color: pink;
 }
