@@ -1,22 +1,16 @@
 import "../css/rightBox.css";
-//import BarChartComponent from "../utils/BarChartComponent";
+import { useContext, useEffect } from "react";
+import { PassedFlag } from "../components/MainBox";
 import PieChartComponent from "../utils/PieChartComponent";
 import LineChartComponent from "../utils/LineChartComponent";
 import StackAreaChartComponent from "../utils/StackAreaChartComponent";
 
 function RightBox() {
-  // //generate a bar fake data
-  // const categories = [
-  //   "Category 1",
-  //   "Category 2",
-  //   "Category 3",
-  //   "Category 4",
-  //   "Category 5",
-  // ];
-  // const values = Array.from({ length: categories.length }, () =>
-  //   Math.floor(Math.random() * 100)
-  // );
-  // const fakeDataBar = { categories, values };
+  const { flag } = useContext(PassedFlag);
+  // const { val } = props
+  useEffect(() => {
+    console.log(flag);
+  }, [flag]);
 
   //generate a pie fake data
   const generateRandomData = () => {
@@ -64,23 +58,18 @@ function RightBox() {
     <div className="rightBox">
       <div className="panelR">
         <div className="chartR">
-          <PieChartComponent
-            data={fakeDataPie}
-            style={{ height: "80%", width: "80%" }}
-          />
+          <PieChartComponent data={fakeDataPie} />
         </div>
         <div className="panelfooterR"> </div>
       </div>
       <div className="panelR">
         <div className="lineR">
-          <LineChartComponent
-            data={fakeLineChartData}
-            style={{ height: "80%", width: "80%" }}
-          />
+          <LineChartComponent data={fakeLineChartData} />
         </div>
         <div className="panelfooterR"> </div>
       </div>
       <div className="panelR">
+        <h2>某图关于drugs</h2>
         <div className="pieR">
           <StackAreaChartComponent data={fakeStackAreaChartData} />
         </div>
