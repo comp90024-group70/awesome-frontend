@@ -4,10 +4,9 @@ import "leaflet/dist/leaflet.css";
 import { statesData } from "./australian-states2";
 import { melbourneData } from "./melbourneoutline";
 import { sydneyData } from "./sydney";
-import LeftBox from "../components/LeftBox";
 import { PassedFlag } from "../components/MainBox";
 
-import { useState, useEffect, createContext, useContext } from "react";
+import { useContext } from "react";
 
 // const PassedFlag = createContext({ "Melbourne": false, "Sydney": false })
 function Map() {
@@ -139,8 +138,8 @@ function Map() {
                         fillOpacity: 0.7,
                         weight: 5,
                         dashArray: "3",
-                        color: "#red",
-                        fillColor: "#red",
+                        color: "pink",
+                        fillColor: "pink",
                       });
                     },
                     mouseout: (e) => {
@@ -149,8 +148,8 @@ function Map() {
                         fillOpacity: 0.7,
                         weight: 2,
                         dashArray: "3",
-                        color: "red",
-                        fillColor: "red",
+                        color: "pink",
+                        fillColor: "pink",
                       });
                     },
                     click: (e) => {
@@ -184,8 +183,8 @@ function Map() {
                           fillOpacity: 0.7,
                           weight: 5,
                           dashArray: "3",
-                          color: "red",
-                          fillColor: "red",
+                          color: "pink",
+                          fillColor: "pink",
                         });
                       },
                       mouseout: (e) => {
@@ -194,8 +193,8 @@ function Map() {
                           fillOpacity: 0.7,
                           weight: 2,
                           dashArray: "3",
-                          color: "red",
-                          fillColor: "red",
+                          color: "pink",
+                          fillColor: "pink",
                         });
                       },
                       click: (e) => {

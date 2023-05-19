@@ -1,93 +1,6 @@
-// import React, { useEffect, useRef } from "react";
-// import * as echarts from "echarts/core";
-// import { PieChart } from "echarts/charts";
-// import {
-//   TitleComponent,
-//   TooltipComponent,
-//   LegendComponent,
-// } from "echarts/components";
-// import { CanvasRenderer } from "echarts/renderers";
-
-// // Register necessary components
-// echarts.use([
-//   TitleComponent,
-//   TooltipComponent,
-//   LegendComponent,
-//   PieChart,
-//   CanvasRenderer,
-// ]);
-
-// const PieChartComponent = ({ data }) => {
-//   const chartRef = useRef(null);
-
-//   useEffect(() => {
-//     const myChart = echarts.init(chartRef.current);
-
-//     // Set the chart options
-//     const options = {
-//       title: {
-//         text: "Pie Chart",
-//         left: "center",
-//         textStyle: {
-//           color: "#ff0000", // Set the desired title color here
-//         },
-//       },
-//       tooltip: {
-//         trigger: "item",
-//         formatter: "{b}: {c} ({d}%)",
-//       },
-//       legend: {
-//         orient: "vertical",
-//         left: "left",
-//         data: data.map((item) => item.name),
-//         textStyle: {
-//           color: "purple",
-//         },
-//       },
-//       series: [
-//         {
-//           name: "Nightingale Chart",
-//           type: "pie",
-//           radius: [40, 80],
-//           center: ["60%", "50%"],
-//           roseType: "area",
-//           data: data,
-//         },
-//       ],
-//     };
-
-//     // Set the chart options to the chart instance
-//     myChart.setOption(options);
-
-//     // Clean up on unmount
-//     return () => {
-//       myChart.dispose();
-//     };
-//   }, [data]);
-
-//   return <div ref={chartRef} style={{ width: "100%", height: "100%" }} />;
-// };
-
-// export default PieChartComponent;
-import React, { useEffect, useRef, useState } from "react";
-import * as echarts from "echarts/core";
-import { PieChart } from "echarts/charts";
-import {
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-} from "echarts/components";
-import { CanvasRenderer } from "echarts/renderers";
+import React, { useEffect, useState } from "react";
+import ReactECharts from "echarts-for-react";
 import axios from "axios";
-
-// Register necessary components
-echarts.use([
-  TitleComponent,
-  TooltipComponent,
-  LegendComponent,
-  PieChart,
-  CanvasRenderer,
-]);
 
 const PieChartComponent = ({ Flag }) => {
   //check if melbourne is clicked or sydney is clicked
@@ -102,17 +15,15 @@ const PieChartComponent = ({ Flag }) => {
 
   //get the data from the backend
   const [topicData, setTopicData] = useState([]);
-  const [topicGcc, setTopicGcc] = useState([]);
-  const [topicSentiment, setTopicSentiment] = useState([]);
 
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get("http://172.26.136.13:8000/api/v1/twitter/topics")
+        .get("http://172.26.136.13:8000//api/v1/twitter/topics")
         .then((res) => {
           setTopicData(res.data.data);
         });
-    }, 5000);
+    }, 1000);
     return () => {
       clearInterval(interval);
     };
@@ -135,13 +46,9 @@ const PieChartComponent = ({ Flag }) => {
   };
   const data = generateRandomData();
 
-  const chartRef = useRef(null);
-
-  useEffect(() => {
-    const myChart = echarts.init(chartRef.current);
-
-    // Set the chart options
-    const options = {
+  // Set the chart options
+  const getOption = () => {
+    return {
       title: {
         text: "Pie Chart",
         left: "center",
@@ -172,17 +79,13 @@ const PieChartComponent = ({ Flag }) => {
         },
       ],
     };
-
-    // Set the chart options to the chart instance
-    myChart.setOption(options);
-
-    // Clean up on unmount
-    return () => {
-      myChart.dispose();
-    };
-  }, [data]);
-
-  return <div ref={chartRef} style={{ width: "100%", height: "100%" }} />;
+  };
+  return (
+    <ReactECharts
+      option={getOption()}
+      style={{ width: "100%", height: "100%" }}
+    />
+  );
 };
 
 export default PieChartComponent;
