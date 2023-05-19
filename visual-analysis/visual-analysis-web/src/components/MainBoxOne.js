@@ -5,12 +5,11 @@ import RightBox from "./RightBox";
 import { useState, createContext } from "react";
 
 export const PassedFlag = createContext();
-function MainBox() {
+function MainBoxOne() {
   const [flag, setFlag] = useState({ Melbourne: false, Sydney: false });
   return (
     <PassedFlag.Provider value={{ flag, setFlag }}>
       <div className="mainBox">
-        <LeftBox />
         <MidBox />
         <RightBox />
       </div>
@@ -18,4 +17,4 @@ function MainBox() {
   );
 }
 
-export default MainBox;
+export default MainBoxOne;

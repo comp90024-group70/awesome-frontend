@@ -1,5 +1,5 @@
 .leftBox {
-  flex: 3;
+  flex: 4;
 }
 .panelL {
   position: relative;
@@ -64,14 +64,13 @@
   font-weight: 400;
 }
 .panelL .chartL {
+  /* margin-right: 1.5rem;
+  margin-left: 1.5rem; */
   height: 3rem;
-  background-color: pink;
 }
 .panelL .lineL {
   height: 3rem;
-  background-color: pink;
 }
 .panelL .pieL {
   height: 3rem;
-  background-color: pink;
 }
