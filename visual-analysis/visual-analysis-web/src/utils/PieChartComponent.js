@@ -90,7 +90,6 @@ echarts.use([
 ]);
 
 const PieChartComponent = ({ Flag }) => {
-  console.log(Flag);
   //check if melbourne is clicked or sydney is clicked
   let targetGcc = "";
   if (Flag.Melbourne === false && Flag.Sydney === false) {
@@ -101,7 +100,6 @@ const PieChartComponent = ({ Flag }) => {
     targetGcc = "sydney";
   }
 
-  console.log(targetGcc);
   //get the data from the backend
   const [topicData, setTopicData] = useState([]);
   const [topicGcc, setTopicGcc] = useState([]);
@@ -119,8 +117,6 @@ const PieChartComponent = ({ Flag }) => {
       clearInterval(interval);
     };
   }, []);
-
-  console.log(topicData);
 
   const generateRandomData = () => {
     const categories = [

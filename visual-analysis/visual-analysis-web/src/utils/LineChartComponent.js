@@ -212,7 +212,6 @@ const LineChartComponent = () => {
   const handleDataTypeChange = (event) => {
     setSelectedDataType(event.target.value);
   };
-  console.log(selectedDataType);
   const chartRef = useRef(null);
 
   useEffect(() => {

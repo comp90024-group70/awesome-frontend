@@ -18,9 +18,9 @@ function LeftBox() {
   if (flag.Melbourne === false && flag.Sydney === false) {
     ExactBarChartL = StateBarChart;
   } else if (flag.Melbourne === true && flag.Sydney === false) {
-    // ExactBarChartL = MelbourneChart
+    ExactBarChartL = StateBarChart;
   } else if (flag.Melbourne === false && flag.Sydney === true) {
-    // ExactBarChartL = SydneyChart
+    ExactBarChartL = StateBarChart;
   }
 
   const fakeWordCloudData = [
