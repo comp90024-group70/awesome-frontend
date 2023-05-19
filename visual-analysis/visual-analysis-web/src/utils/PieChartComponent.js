@@ -19,7 +19,7 @@ const PieChartComponent = ({ Flag }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get("http://172.26.136.13:8000//api/v1/twitter/topics")
+        .get("http://172.26.136.13:8000//api/v1/twitter/topics?topic=cov")
         .then((res) => {
           setTopicData(res.data.data);
         });
@@ -29,22 +29,21 @@ const PieChartComponent = ({ Flag }) => {
     };
   }, []);
 
-  console.log(topicData);
+  const rightGccData = topicData[targetGcc];
 
-  const generateRandomData = () => {
-    const categories = [
-      "Category 1",
-      "Category 2",
-      "Category 3",
-      "Category 4",
-      "Category 5",
-    ];
-    return categories.map((category) => ({
-      name: category,
-      value: Math.floor(Math.random() * 100),
+  console.log(rightGccData);
+
+  //abtract the right data
+  let data;
+
+  if (typeof rightGccData === "undefined") {
+    data = [{ name: "loading", value: 0 }];
+  } else {
+    data = Object.entries(rightGccData).map(([name, value]) => ({
+      name,
+      value,
     }));
-  };
-  const data = generateRandomData();
+  }
 
   // Set the chart options
   const getOption = () => {
