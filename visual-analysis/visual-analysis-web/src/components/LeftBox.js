@@ -2,8 +2,8 @@ import "../css/leftBox.css";
 import { useContext, useEffect } from "react";
 import { PassedFlag } from "../components/MainBox";
 import { StateBarChart } from "../utils/StateBarChart";
-import TreeMapComponent from "../utils/TreeMapComponent";
-import WordCloudComponent from "../utils/WordCloudComponent";
+import HorizantalBarChartComponent from "../utils/HorizontalBarComponent";
+import LineChartComponent from "../utils/LineChartComponent";
 
 function LeftBox() {
   const { flag } = useContext(PassedFlag);
@@ -56,6 +56,23 @@ function LeftBox() {
     // Add more data items as needed
   ];
 
+  //Fake horizental bar chart component
+  const fakeHorizentalBarData = [
+    { name: "Mon", value: 320 },
+    { name: "Tue", value: 480 },
+    { name: "Wed", value: 200 },
+    { name: "Thu", value: 600 },
+    { name: "Fri", value: 350 },
+    { name: "Sat", value: 800 },
+    { name: "Sun", value: 400 },
+  ];
+
+  //fake line chart data
+  const fakeLineChartData = {
+    xAxisData: ["Jan", "Feb", "Mar", "Apr", "May"],
+    seriesData: [820, 932, 901, 934, 1290],
+  };
+
   return (
     <div className="leftBox">
       <div className="panelL">
@@ -63,21 +80,16 @@ function LeftBox() {
         <div className="chartL">
           <ExactBarChartL />
         </div>
-        <div className="panelfooterL"></div>
       </div>
       <div className="panelL">
-        <h2>某图关于drugs</h2>
         <div className="lineL">
-          <TreeMapComponent data={fakeTreeMapData} />
+          <LineChartComponent />
         </div>
-        <div className="panelfooterL"> </div>
       </div>
       <div className="panelL">
-        <h2>某图关于drugs</h2>
         <div className="pieL">
-          <WordCloudComponent data={fakeWordCloudData} />
+          <HorizantalBarChartComponent data={fakeHorizentalBarData} />
         </div>
-        <div className="panelfooterL"> </div>
       </div>
     </div>
   );

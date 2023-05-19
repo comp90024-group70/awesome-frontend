@@ -1,0 +1,20 @@
+.custom-select {
+  /* Add your custom styles here */
+  background-color: #0e99ef;
+  border: 0.3px solid #ddd;
+  padding: 0.3px;
+  font-size: auto;
+  border-radius: 0.2px;
+  color: #333;
+}
+
+.custom-select:hover {
+  /* Add hover styles if desired */
+  background-color: #ebebeb;
+}
+
+.custom-select:focus {
+  /* Add focus styles if desired */
+  outline: none;
+  box-shadow: 0 0 5px rgb(229, 77, 77);
+}

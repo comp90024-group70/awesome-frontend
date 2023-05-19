@@ -1,5 +1,6 @@
 import "../css/midBox.css";
 import Map from "../utils/Map";
+
 function MidBox() {
   return (
     <div className="midBox">
