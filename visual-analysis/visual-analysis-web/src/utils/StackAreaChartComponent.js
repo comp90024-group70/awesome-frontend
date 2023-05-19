@@ -1,14 +1,10 @@
-import React, { useEffect, useRef } from "react";
-import * as echarts from "echarts";
+import React, { useEffect, useState } from "react";
+import ReactECharts from "echarts-for-react";
+import axios from "axios";
 
 const StackAreaChartComponent = ({ data }) => {
-  const chartRef = useRef(null);
-
-  useEffect(() => {
-    const chartDom = chartRef.current;
-    const myChart = echarts.init(chartDom);
-
-    const option = {
+  const getOption = () => {
+    return {
       title: {
         text: "Stack Area Chart",
         left: "center",
@@ -47,15 +43,13 @@ const StackAreaChartComponent = ({ data }) => {
         name: series.name,
       })),
     };
-
-    myChart.setOption(option);
-
-    return () => {
-      myChart.dispose();
-    };
-  }, [data]);
-
-  return <div ref={chartRef} style={{ width: "100%", height: "100%" }} />;
+  };
+  return (
+    <ReactECharts
+      option={getOption()}
+      style={{ width: "100%", height: "100%" }}
+    />
+  );
 };
 
 export default StackAreaChartComponent;

@@ -1,37 +1,11 @@
-import React, { useEffect, useRef } from "react";
-import * as echarts from "echarts/core";
-import { BarChart } from "echarts/charts";
-import {
-  TitleComponent,
-  TooltipComponent,
-  GridComponent,
-  DatasetComponent,
-  TransformComponent,
-} from "echarts/components";
-import { LabelLayout, UniversalTransition } from "echarts/features";
-import { CanvasRenderer } from "echarts/renderers";
-
-// Register necessary components
-echarts.use([
-  TitleComponent,
-  TooltipComponent,
-  GridComponent,
-  DatasetComponent,
-  TransformComponent,
-  BarChart,
-  LabelLayout,
-  UniversalTransition,
-  CanvasRenderer,
-]);
+import React, { useEffect, useState } from "react";
+import ReactECharts from "echarts-for-react";
+import axios from "axios";
 
 const HorizantalBarChartComponent = ({ data }) => {
-  const chartRef = useRef(null);
-
-  useEffect(() => {
-    const myChart = echarts.init(chartRef.current);
-
-    // Set the chart options
-    const options = {
+  // Set the chart options
+  const getOption = () => {
+    return {
       tooltip: {
         trigger: "axis",
         axisPointer: {
@@ -60,17 +34,13 @@ const HorizantalBarChartComponent = ({ data }) => {
         },
       ],
     };
-
-    // Set the chart options to the chart instance
-    myChart.setOption(options);
-
-    // Clean up on unmount
-    return () => {
-      myChart.dispose();
-    };
-  }, [data]);
-
-  return <div ref={chartRef} style={{ width: "100%", height: "100%" }} />;
+  };
+  return (
+    <ReactECharts
+      option={getOption()}
+      style={{ width: "100%", height: "100%" }}
+    />
+  );
 };
 
 export default HorizantalBarChartComponent;

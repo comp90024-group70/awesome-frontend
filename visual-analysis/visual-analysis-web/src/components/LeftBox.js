@@ -2,8 +2,8 @@ import "../css/leftBox.css";
 import { useContext, useEffect } from "react";
 import { PassedFlag } from "../components/MainBox";
 import { StateBarChart } from "../utils/StateBarChart";
-import HorizantalBarChartComponent from "../utils/HorizontalBarComponent";
 import LineChartComponent from "../utils/LineChartComponent";
+import StackAreaChartComponent from "../utils/StackAreaChartComponent";
 
 function LeftBox() {
   const { flag } = useContext(PassedFlag);
@@ -56,21 +56,30 @@ function LeftBox() {
     // Add more data items as needed
   ];
 
-  //Fake horizental bar chart component
-  const fakeHorizentalBarData = [
-    { name: "Mon", value: 320 },
-    { name: "Tue", value: 480 },
-    { name: "Wed", value: 200 },
-    { name: "Thu", value: 600 },
-    { name: "Fri", value: 350 },
-    { name: "Sat", value: 800 },
-    { name: "Sun", value: 400 },
-  ];
-
   //fake line chart data
   const fakeLineChartData = {
     xAxisData: ["Jan", "Feb", "Mar", "Apr", "May"],
     seriesData: [820, 932, 901, 934, 1290],
+  };
+
+  //fake Stack Area Chart component
+  const fakeStackAreaChartData = {
+    legendData: ["Series A", "Series B", "Series C"],
+    xAxisData: ["Jan", "Feb", "Mar", "Apr", "May"],
+    seriesData: [
+      {
+        name: "Series A",
+        data: [820, 932, 901, 934, 1290],
+      },
+      {
+        name: "Series B",
+        data: [620, 732, 701, 734, 1090],
+      },
+      {
+        name: "Series C",
+        data: [320, 432, 501, 534, 990],
+      },
+    ],
   };
 
   return (
@@ -88,7 +97,7 @@ function LeftBox() {
       </div>
       <div className="panelL">
         <div className="pieL">
-          <HorizantalBarChartComponent data={fakeHorizentalBarData} />
+          <StackAreaChartComponent data={fakeStackAreaChartData} />
         </div>
       </div>
     </div>

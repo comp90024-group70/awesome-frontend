@@ -55,6 +55,9 @@ export function StateBarChart() {
         {
           type: "bar",
           data: sentiment,
+          itemStyle: {
+            color: "#F0CAA3",
+          },
         },
       ],
     };
