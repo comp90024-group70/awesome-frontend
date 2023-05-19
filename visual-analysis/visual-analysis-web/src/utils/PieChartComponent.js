@@ -112,11 +112,13 @@ const PieChartComponent = ({ Flag }) => {
         .then((res) => {
           setTopicData(res.data.data);
         });
-    }, 20000);
+    }, 5000);
     return () => {
       clearInterval(interval);
     };
   }, []);
+
+  console.log(topicData);
 
   const generateRandomData = () => {
     const categories = [

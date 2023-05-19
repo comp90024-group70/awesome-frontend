@@ -56,7 +56,7 @@ import * as echarts from "echarts";
 import axios from "axios";
 
 const TreeMapComponent = ({ Flag }) => {
-  console.log(Flag);
+  // console.log(Flag);
 
   let targetGcc = "sydney";
   if (Flag.Melbourne === false && Flag.Sydney === false) {
@@ -90,8 +90,6 @@ const TreeMapComponent = ({ Flag }) => {
   //find the right gcc data
   // const rightGccData = wcData.data[targetGcc];
 
-  console.log(rightGccData);
-
   let data;
 
   if (typeof rightGccData === "undefined") {
@@ -117,7 +115,6 @@ const TreeMapComponent = ({ Flag }) => {
     }));
   }
 
-  console.log(data);
   // console.log(data);
 
   const chartRef = useRef(null);
