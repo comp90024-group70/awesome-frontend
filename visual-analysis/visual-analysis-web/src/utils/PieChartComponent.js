@@ -3,14 +3,44 @@ import ReactECharts from "echarts-for-react";
 import axios from "axios";
 
 const PieChartComponent = ({ Flag }) => {
+  console.log(Flag);
   //check if melbourne is clicked or sydney is clicked
-  let targetGcc = "";
-  if (Flag.Melbourne === false && Flag.Sydney === false) {
-    targetGcc = "all";
-  } else if (Flag.Melbourne === true && Flag.Sydney === false) {
-    targetGcc = "melbourne";
-  } else if (Flag.Melbourne === false && Flag.Sydney === true) {
+  let targetGcc = "sydney";
+  if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
     targetGcc = "sydney";
+  } else if (
+    Flag.Melbourne === true &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
+    targetGcc = "melbourne";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === true &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
+    targetGcc = "sydney";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === true &&
+    Flag.Brisbane === false
+  ) {
+    targetGcc = "perth";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === true
+  ) {
+    targetGcc = "brisbane";
   }
 
   //get the data from the backend
@@ -32,7 +62,6 @@ const PieChartComponent = ({ Flag }) => {
   const rightGccData = topicData[targetGcc];
 
   console.log(rightGccData);
-
   //abtract the right data
   let data;
 
@@ -71,8 +100,8 @@ const PieChartComponent = ({ Flag }) => {
         {
           name: "Nightingale Chart",
           type: "pie",
-          radius: [40, 80],
-          center: ["60%", "50%"],
+          radius: [30, 50],
+          center: ["60%", "60%"],
           roseType: "area",
           data: data,
         },

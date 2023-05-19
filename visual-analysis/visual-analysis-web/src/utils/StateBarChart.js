@@ -44,6 +44,13 @@ export function StateBarChart() {
         bottom: "3%",
         containLabel: true,
       },
+      title: {
+        text: "Bar chart",
+        left: "center",
+        textStyle: {
+          color: "#ff0000", // Set the desired title color here
+        },
+      },
       xAxis: {
         type: "category",
         data: country,

@@ -4,6 +4,7 @@ import { PassedFlag } from "../components/MainBox";
 import { StateBarChart } from "../utils/StateBarChart";
 import LineChartComponent from "../utils/LineChartComponent";
 import StackAreaChartComponent from "../utils/StackAreaChartComponent";
+import ShowTextInTime from "../utils/ShowTextInTime";
 
 function LeftBox() {
   const { flag } = useContext(PassedFlag);
@@ -85,7 +86,6 @@ function LeftBox() {
   return (
     <div className="leftBox">
       <div className="panelL">
-        <h2>avg sentiment</h2>
         <div className="chartL">
           <ExactBarChartL />
         </div>
@@ -97,7 +97,7 @@ function LeftBox() {
       </div>
       <div className="panelL">
         <div className="pieL">
-          <StackAreaChartComponent data={fakeStackAreaChartData} />
+          <ShowTextInTime />
         </div>
       </div>
     </div>

@@ -1,0 +1,23 @@
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.containerInTime {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 25%;
+
+  .textInTime {
+    font-size: 1rem;
+    color: black;
+    animation: fadeInOut 1s infinite;
+  }
+}
