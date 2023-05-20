@@ -8,12 +8,13 @@ function MidBox() {
     const [mastodonCount, setMastodonCount] = useState(0);
     useEffect(() => {
         sendRequest("/twitter/count").then((res) => {
-            setTwitterCount(res.data.data);
+            console.log(res);
+            setTwitterCount(res.data.data.count);
         });
     }, [])
     useEffect(() => {
       sendRequest("/mastodon/count").then((res) => {
-        setMastodonCount(res.data.data);
+        setMastodonCount(res.data.data.count);
       });
     }, [])
     return (
@@ -21,10 +22,10 @@ function MidBox() {
             <div className="number">
                 <div className="numberHeader">
                     <ul>
-                        {/*<li>{twitterCount}</li>*/}
-                        {/*<li>{mastodonCount}</li>*/}
-                        <li>Twitters</li>
-                        <li>Mastodons</li>
+                        <li>{twitterCount}</li>
+                        <li>{mastodonCount}</li>
+                        {/*<li>Twitters</li>*/}
+                        {/*<li>Mastodons</li>*/}
                     </ul>
                 </div>
                 <div className="numberBody">
