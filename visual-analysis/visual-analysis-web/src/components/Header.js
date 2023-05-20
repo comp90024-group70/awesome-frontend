@@ -1,6 +1,7 @@
 import "../css/header.css";
 import TimeDisplay from "../utils/setTime";
 import Modal from "./Modal";
+import IntroPage from "./IntroPage";
 
 function headerLine() {
   let time = TimeDisplay();

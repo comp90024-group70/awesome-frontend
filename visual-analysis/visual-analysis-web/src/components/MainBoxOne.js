@@ -6,7 +6,11 @@ import { useState, createContext } from "react";
 
 export const PassedFlag = createContext();
 function MainBoxOne() {
-  const [flag, setFlag] = useState({ Melbourne: false, Sydney: false });
+  const [flag, setFlag] = useState({
+    Melbourne: false,
+    Sydney: false,
+    Perth: false,
+  });
   return (
     <PassedFlag.Provider value={{ flag, setFlag }}>
       <div className="mainBox">

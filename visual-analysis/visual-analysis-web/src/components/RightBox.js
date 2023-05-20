@@ -99,7 +99,7 @@ function RightBox() {
       </div>
       <div className="panelR">
         <div className="pieR">
-          <HorizantalBarChartComponent data={fakeHorizentalBarData} />
+          <HorizantalBarChartComponent Flag={flag} />
         </div>
       </div>
     </div>

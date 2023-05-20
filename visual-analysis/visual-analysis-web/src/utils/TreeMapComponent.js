@@ -5,12 +5,41 @@ import axios from "axios";
 const TreeMapComponent = ({ Flag }) => {
   //determine what is clicked
   let targetGcc = "sydney";
-  if (Flag.Melbourne === false && Flag.Sydney === false) {
+  if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
     targetGcc = "sydney";
-  } else if (Flag.Melbourne === true && Flag.Sydney === false) {
+  } else if (
+    Flag.Melbourne === true &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
     targetGcc = "melbourne";
-  } else if (Flag.Melbourne === false && Flag.Sydney === true) {
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === true &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
     targetGcc = "sydney";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === true &&
+    Flag.Brisbane === false
+  ) {
+    targetGcc = "perth";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === true
+  ) {
+    targetGcc = "brisbane";
   }
 
   //get the data from the backend

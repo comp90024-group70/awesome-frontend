@@ -3,14 +3,44 @@ import ReactECharts from "echarts-for-react";
 import axios from "axios";
 
 const PieChartComponent = ({ Flag }) => {
+  console.log(Flag);
   //check if melbourne is clicked or sydney is clicked
-  let targetGcc = "";
-  if (Flag.Melbourne === false && Flag.Sydney === false) {
-    targetGcc = "all";
-  } else if (Flag.Melbourne === true && Flag.Sydney === false) {
-    targetGcc = "melbourne";
-  } else if (Flag.Melbourne === false && Flag.Sydney === true) {
+  let targetGcc = "sydney";
+  if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
     targetGcc = "sydney";
+  } else if (
+    Flag.Melbourne === true &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
+    targetGcc = "melbourne";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === true &&
+    Flag.Perth === false &&
+    Flag.Brisbane === false
+  ) {
+    targetGcc = "sydney";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === true &&
+    Flag.Brisbane === false
+  ) {
+    targetGcc = "perth";
+  } else if (
+    Flag.Melbourne === false &&
+    Flag.Sydney === false &&
+    Flag.Perth === false &&
+    Flag.Brisbane === true
+  ) {
+    targetGcc = "brisbane";
   }
 
   //get the data from the backend
@@ -19,7 +49,7 @@ const PieChartComponent = ({ Flag }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       axios
-        .get("http://172.26.136.13:8000//api/v1/twitter/topics")
+        .get("http://172.26.136.13:8000//api/v1/twitter/topics?topic=cov")
         .then((res) => {
           setTopicData(res.data.data);
         });
@@ -29,22 +59,20 @@ const PieChartComponent = ({ Flag }) => {
     };
   }, []);
 
-  console.log(topicData);
+  const rightGccData = topicData[targetGcc];
 
-  const generateRandomData = () => {
-    const categories = [
-      "Category 1",
-      "Category 2",
-      "Category 3",
-      "Category 4",
-      "Category 5",
-    ];
-    return categories.map((category) => ({
-      name: category,
-      value: Math.floor(Math.random() * 100),
+  console.log(rightGccData);
+  //abtract the right data
+  let data;
+
+  if (typeof rightGccData === "undefined") {
+    data = [{ name: "loading", value: 0 }];
+  } else {
+    data = Object.entries(rightGccData).map(([name, value]) => ({
+      name,
+      value,
     }));
-  };
-  const data = generateRandomData();
+  }
 
   // Set the chart options
   const getOption = () => {
@@ -72,8 +100,8 @@ const PieChartComponent = ({ Flag }) => {
         {
           name: "Nightingale Chart",
           type: "pie",
-          radius: [40, 80],
-          center: ["60%", "50%"],
+          radius: [30, 50],
+          center: ["60%", "60%"],
           roseType: "area",
           data: data,
         },

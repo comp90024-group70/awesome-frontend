@@ -4,6 +4,8 @@ import "leaflet/dist/leaflet.css";
 import { statesData } from "./australian-states2";
 import { melbourneData } from "./melbourneoutline";
 import { sydneyData } from "./sydney";
+import { brisbaneData } from "./brisbaneoutline";
+import { perthData } from "./perthoutline";
 import { PassedFlag } from "../components/MainBox";
 
 import { useContext } from "react";
@@ -153,7 +155,12 @@ function Map() {
                       });
                     },
                     click: (e) => {
-                      const chagedFlag = { Melbourne: true, Sydney: false };
+                      const chagedFlag = {
+                        Melbourne: true,
+                        Sydney: false,
+                        Perth: false,
+                        Brisbane: false,
+                      };
                       setFlag(chagedFlag);
                     },
                   }}
@@ -198,7 +205,12 @@ function Map() {
                         });
                       },
                       click: (e) => {
-                        const chagedFlag = { Melbourne: true, Sydney: false };
+                        const chagedFlag = {
+                          Melbourne: true,
+                          Sydney: false,
+                          Perth: false,
+                          Brisbane: false,
+                        };
                         setFlag(chagedFlag);
                       },
                     }}
@@ -246,7 +258,12 @@ function Map() {
                       });
                     },
                     click: (e) => {
-                      const chagedFlag = { Melbourne: false, Sydney: true };
+                      const chagedFlag = {
+                        Melbourne: false,
+                        Sydney: true,
+                        Perth: false,
+                        Brisbane: false,
+                      };
                       setFlag(chagedFlag);
                     },
                   }}
@@ -291,7 +308,12 @@ function Map() {
                         });
                       },
                       click: (e) => {
-                        const chagedFlag = { Melbourne: false, Sydney: true };
+                        const chagedFlag = {
+                          Melbourne: false,
+                          Sydney: true,
+                          Perth: false,
+                          Brisbane: false,
+                        };
                         setFlag(chagedFlag);
                       },
                     }}
@@ -300,6 +322,162 @@ function Map() {
               });
             }
           })}
+          ,
+          {perthData.features.map((country) => {
+            if (country.geometry.type === "Polygon") {
+              const coordinates = country.geometry.coordinates[0].map(
+                (coordinate) => [coordinate[1], coordinate[0]]
+              );
+              return (
+                <Polygon
+                  pathOptions={{
+                    fillColor: "pink",
+                    fillOpacity: 0.7,
+                    weight: 2,
+                    opacity: 1,
+                    dashArray: "3",
+                    color: "black",
+                  }}
+                  positions={coordinates}
+                  eventHandlers={{
+                    mouseover: (e) => {
+                      const layer = e.target;
+                      layer.setStyle({
+                        fillOpacity: 0.7,
+                        weight: 5,
+                        dashArray: "3",
+                        color: "pink",
+                        fillColor: "pink",
+                      });
+                    },
+                    mouseout: (e) => {
+                      const layer = e.target;
+                      layer.setStyle({
+                        fillOpacity: 0.7,
+                        weight: 2,
+                        dashArray: "3",
+                        color: "pink",
+                        fillColor: "pink",
+                      });
+                    },
+                    click: (e) => {
+                      const chagedFlag = {
+                        Melbourne: false,
+                        Sydney: false,
+                        Perth: true,
+                        Brisbane: false,
+                      };
+                      setFlag(chagedFlag);
+                    },
+                  }}
+                />
+              );
+            }
+          })}
+          ,
+          {brisbaneData.features.map((state) => {
+            if (state.geometry.type === "Polygon") {
+              const coordinates = state.geometry.coordinates[0].map(
+                (coordinate) => [coordinate[1], coordinate[0]]
+              );
+              return (
+                <Polygon
+                  pathOptions={{
+                    fillColor: "#FD8D3C",
+                    fillOpacity: 0.7,
+                    weight: 2,
+                    opacity: 1,
+                    dashArray: "3",
+                    color: "blue",
+                  }}
+                  positions={coordinates}
+                  eventHandlers={{
+                    mouseover: (e) => {
+                      const layer = e.target;
+                      layer.setStyle({
+                        fillOpacity: 0.7,
+                        weight: 5,
+                        dashArray: "3",
+                        color: "#666",
+                        fillColor: "#FACDCC",
+                      });
+                    },
+                    mouseout: (e) => {
+                      const layer = e.target;
+                      layer.setStyle({
+                        fillOpacity: 0.7,
+                        weight: 2,
+                        dashArray: "3",
+                        color: "white",
+                        fillColor: "#FD8D3C",
+                      });
+                    },
+                    click: (e) => {
+                      const chagedFlag = {
+                        Melbourne: false,
+                        Sydney: false,
+                        Perth: false,
+                        Brisbane: true,
+                      };
+                      setFlag(chagedFlag);
+                    },
+                  }}
+                />
+              );
+            } else if (state.geometry.type === "MultiPolygon") {
+              return state.geometry.coordinates.map((polygon) => {
+                const coordinates = polygon[0].map((coordinate) => [
+                  coordinate[1],
+                  coordinate[0],
+                ]);
+                return (
+                  <Polygon
+                    pathOptions={{
+                      fillColor: "#FD8D3C",
+                      fillOpacity: 0.7,
+                      weight: 2,
+                      opacity: 1,
+                      dashArray: "3",
+                      color: "blue",
+                    }}
+                    positions={coordinates}
+                    eventHandlers={{
+                      mouseover: (e) => {
+                        const layer = e.target;
+                        layer.setStyle({
+                          fillOpacity: 0.7,
+                          weight: 5,
+                          dashArray: "3",
+                          color: "#666",
+                          fillColor: "#FACDCC",
+                        });
+                      },
+                      mouseout: (e) => {
+                        const layer = e.target;
+                        layer.setStyle({
+                          fillOpacity: 0.7,
+                          weight: 2,
+                          dashArray: "3",
+                          color: "white",
+                          fillColor: "#FD8D3C",
+                        });
+                      },
+                      click: (e) => {
+                        const chagedFlag = {
+                          Melbourne: false,
+                          Sydney: false,
+                          Perth: false,
+                          Brisbane: true,
+                        };
+                        setFlag(chagedFlag);
+                      },
+                    }}
+                  />
+                );
+              });
+            }
+          })}
+          ,
         </MapContainer>
       </div>
     </PassedFlag.Provider>
