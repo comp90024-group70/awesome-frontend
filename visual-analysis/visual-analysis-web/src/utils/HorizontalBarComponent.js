@@ -55,7 +55,7 @@
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import axios from "axios";
-
+import {sendRequest} from "./requests";
 const HorizantalBarChartComponent = ({ Flag }) => {
   //determine what is clicked
   let targetGcc = "sydney";
@@ -100,15 +100,29 @@ const HorizantalBarChartComponent = ({ Flag }) => {
   const [benefitData, setBenefitData] = useState([]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios.get("http://172.26.136.13:8000/api/v1/sa4/family").then((res) => {
+    // let domain = process.env.REQUEST_DOMAIN;
+    // if (domain === undefined) {
+    //   domain = 'http://172.26.131.154/';
+    // }
+    // axios
+    //     .get(`http://${domain}:8000/api/v1/sa4/family`)
+    //     .then((res) => {
+    //       setBenefitData(res.data.data);
+    //     });
+    sendRequest("/sa4/family", null, (res) => {
         setBenefitData(res.data.data);
-      });
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+    });
+  }, [])
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     axios.get("http://172.26.136.13:8000/api/v1/sa4/family").then((res) => {
+  //       setBenefitData(res.data.data);
+  //     });
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   const rightGccData = benefitData[targetGcc];
 

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import axios from "axios";
-
+import {sendRequest} from "./requests";
 const TreeMapComponent = ({ Flag }) => {
   //determine what is clicked
   let targetGcc = "sydney";
@@ -45,18 +45,36 @@ const TreeMapComponent = ({ Flag }) => {
   //get the data from the backend
   const [wcData, setWcData] = useState([]);
 
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     let domain = process.env.REQUEST_DOMAIN;
+  //     if (domain === undefind) {
+  //       domain = 'http://172.26.131.154/';
+  //     }
+  //     axios
+  //       .get(`http://${domain}:8000/api/v1/twitter/treemap`)
+  //       .then((res) => {
+  //         setWcData(res.data.data);
+  //       });
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios
-        .get("http://172.26.136.13:8000/api/v1/twitter/treemap")
-        .then((res) => {
-          setWcData(res.data.data);
-        });
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+    // let domain = process.env.REQUEST_DOMAIN;
+    // if (domain === undefined) {
+    //   domain = 'http://172.26.131.154/';
+    // }
+    // axios
+    //     .get(`http://${domain}:8000/api/v1/twitter/treemap`)
+    //     .then((res) => {
+    //       setWcData(res.data.data);
+    //     });
+    sendRequest("/twitter/treemap", {}, (res) => {
+        setWcData(res.data.data);
+    });
+  }, [])
 
   const rightGccData = wcData[targetGcc];
 

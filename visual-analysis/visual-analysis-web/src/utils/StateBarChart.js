@@ -1,23 +1,37 @@
 import React, { useState, useEffect } from "react";
 import ReactECharts from "echarts-for-react";
 import axios from "axios";
-
+import {sendRequest} from "./requests";
 export function StateBarChart() {
   const [data, setData] = useState([]);
   const [country, setCountry] = useState([]);
   const [sentiment, setSentiment] = useState([]);
 
   //获取数据从url路径
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     axios.get("http://172.26.136.13:8000/api/v1/sentiment").then((res) => {
+  //       setData(res.data.data);
+  //     });
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios.get("http://172.26.136.13:8000/api/v1/sentiment").then((res) => {
+    // let domain = process.env.REQUEST_DOMAIN;
+    // if (domain === undefined) {
+    //   domain = 'http://172.26.131.154/';
+    // }
+    // axios
+    //     .get(`http://${domain}:8000/api/v1/sentiment`)
+    //     .then((res) => {
+    //       setData(res.data.data);
+    //     });
+    sendRequest("/sentiment").then((res) => {
         setData(res.data.data);
-      });
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+    })
+  }, [])
 
   //设置x轴和y轴的值 处理数据
   useEffect(() => {

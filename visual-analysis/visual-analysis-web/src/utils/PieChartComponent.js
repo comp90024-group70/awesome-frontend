@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import axios from "axios";
+import {sendRequest} from "./requests";
 
 const PieChartComponent = ({ Flag }) => {
   console.log(Flag);
@@ -45,19 +46,34 @@ const PieChartComponent = ({ Flag }) => {
 
   //get the data from the backend
   const [topicData, setTopicData] = useState([]);
-
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios
-        .get("http://172.26.136.13:8000//api/v1/twitter/topics?topic=cov")
-        .then((res) => {
-          setTopicData(res.data.data);
-        });
-    }, 1000);
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+    sendRequest("/twitter/topics", {"topic": "cov"}).then((res) => {
+      setTopicData(res.data.data);
+    });
+  }, [])
+  // useEffect(() => {
+  //   let domain = process.env.REQUEST_DOMAIN;
+  //   if (domain === undefined) {
+  //     domain = 'http://172.26.131.154/';
+  //   }
+  //   axios
+  //       .get(`http://${domain}:8000/api/v1/twitter/topics?topic=cov`)
+  //       .then((res) => {
+  //         setTopicData(res.data.data);
+  //       });
+  // }, [])
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     axios
+  //       .get("http://172.26.136.13:8000//api/v1/twitter/topics?topic=cov")
+  //       .then((res) => {
+  //         setTopicData(res.data.data);
+  //       });
+  //   }, 1000);
+  //   return () => {
+  //     clearInterval(interval);
+  //   };
+  // }, []);
 
   const rightGccData = topicData[targetGcc];
 

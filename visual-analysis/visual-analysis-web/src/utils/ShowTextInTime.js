@@ -6,15 +6,20 @@ function ShowTextInTime () {
   const textShow = "hello world"
   const [data, setData] = useState([])
   const [text, setText] = useState([])
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     axios.get("url").then((res) => {
+  //       setData(res.data.string)
+  //     })
+  //   }, 1000)
+  //   return () => {
+  //     clearInterval(interval)
+  //   }
+  // }, [])
   useEffect(() => {
-    const interval = setInterval(() => {
-      axios.get("url").then((res) => {
-        setData(res.data.string)
-      })
-    }, 1000)
-    return () => {
-      clearInterval(interval)
-    }
+    axios.get("url").then((res) => {
+      setData(res.data.string)
+    })
   }, [])
   useEffect(() => {
     const newText = []
