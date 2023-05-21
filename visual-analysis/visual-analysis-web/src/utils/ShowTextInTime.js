@@ -26,7 +26,10 @@ function ShowTextInTime () {
   useEffect(() => {
     let newUser = data.username
     let newText = data.content
-    console.log(newText)
+
+    if (newText && newText.length > 100) {
+      newText = newText.slice(0, 100) + "..."
+    }
     setUserName(newUser)
     setText(newText)
   }, [data])
