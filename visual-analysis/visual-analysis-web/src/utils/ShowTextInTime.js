@@ -1,35 +1,35 @@
-import axios from "axios";
-import { useState, useEffect } from "react";
-import "../css/showTextInTime.css";
-import { sendRequest } from "./requests";
+import axios from "axios"
+import { useState, useEffect } from "react"
+import "../css/showTextInTime.css"
+import { sendRequest } from "./requests"
 
-function ShowTextInTime() {
-  const [data, setData] = useState({});
-  const [userName, setUserName] = useState("");
-  const [text, setText] = useState("");
-  useEffect(() => {
-    sendRequest("/mastodon/recent").then((res) => {
-      setData(res.data.data);
-    });
-  }, []);
+function ShowTextInTime () {
+  const [data, setData] = useState({})
+  const [userName, setUserName] = useState("")
+  const [text, setText] = useState("")
   // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     sendRequest("/mastodon/recent").then((res) => {
-  //       setData(res.data.data);
-  //     });
-  //   }, 1000)
-  //   return () => {
-  //     clearInterval(interval)
-  //   }
-
+  //   sendRequest("/mastodon/recent").then((res) => {
+  //     setData(res.data.data);
+  //   });
   // }, []);
   useEffect(() => {
-    let newUser = data.username;
-    let newText = data.content;
-    console.log(newText);
-    setUserName(newUser);
-    setText(newText);
-  }, [data]);
+    const interval = setInterval(() => {
+      sendRequest("/mastodon/recent").then((res) => {
+        setData(res.data.data)
+      })
+    }, 5000)
+    return () => {
+      clearInterval(interval)
+    }
+
+  }, [])
+  useEffect(() => {
+    let newUser = data.username
+    let newText = data.content
+    console.log(newText)
+    setUserName(newUser)
+    setText(newText)
+  }, [data])
 
   return (
     <>
@@ -51,6 +51,6 @@ function ShowTextInTime() {
         </div>
       </div>
     </>
-  );
+  )
 }
-export default ShowTextInTime;
+export default ShowTextInTime
