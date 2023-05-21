@@ -9,6 +9,7 @@ function headerLine() {
     <div className="headerLine">
       <div className="center-content">
         <Modal />
+        <IntroPage />
         <h1>Welcome</h1>
         <p>{time}</p>
       </div>

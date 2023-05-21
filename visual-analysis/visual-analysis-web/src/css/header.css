@@ -5,7 +5,6 @@
 }
 .headerLine .center-content {
   display: flex;
-  justify-content: space-between;
   align-items: center;
 }
 .headerLine .center-content h1 {
@@ -13,9 +12,11 @@
   color: #fff;
   text-align: center;
   line-height: 1rem;
+  margin-left: 9.4rem;
 }
 .headerLine .center-content p {
   line-height: 0.9375rem;
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.25rem;
+  margin-left: 8rem;
 }

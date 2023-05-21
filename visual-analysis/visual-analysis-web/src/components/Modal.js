@@ -12,17 +12,17 @@ function Modal() {
 
       {showModal && (
         <div className="modal">
-          <animated.div className="modal-content">
-            <h1>xxx</h1>
-            <h1>xxx</h1>
-            <h1>xxx</h1>
-            <h1>xxx</h1>
-            <h1>xxx</h1>
-            <h1>xxx</h1>
+          <div className="modal-content">
+            <h3>Zian Wang 1225523</h3>
+            <h3>Zhichen Ren 1323624</h3>
+            <h3>Chenghan Lin 1011576</h3>
+            <h3>Xingjian Zhang 991456</h3>
+            {/* <h1>xxx</h1>
+            <h1>xxx</h1> */}
             <button className="button" onClick={() => setShowModal(false)}>
               close
             </button>
-          </animated.div>
+          </div>
         </div>
       )}
     </div>

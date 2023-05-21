@@ -19,16 +19,17 @@
 }
 .modal .modal-content {
   position: relative;
-  background: url('../images/modal_background.jpg') no-repeat center center;
+  background: url("../images/modal_background.jpg") no-repeat center center;
   padding: 20px;
   border-radius: 10px;
   width: 50%;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   z-index: 9999;
 }
-.modal .modal-content h1 {
-  color: pink;
+.modal .modal-content h3 {
+  color: rgb(244, 28, 125);
   font-size: 30px;
   font-weight: 700;
   margin-bottom: 20px;
+  text-align: center;
 }

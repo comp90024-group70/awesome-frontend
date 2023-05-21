@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import axios from "axios";
-import {sendRequest} from "./requests";
+import { sendRequest } from "./requests";
 
 const PieChartComponent = ({ Flag }) => {
-  console.log(Flag);
   //check if melbourne is clicked or sydney is clicked
   let targetGcc = "sydney";
   if (
@@ -47,10 +46,10 @@ const PieChartComponent = ({ Flag }) => {
   //get the data from the backend
   const [topicData, setTopicData] = useState([]);
   useEffect(() => {
-    sendRequest("/twitter/topics", {"topic": "cov"}).then((res) => {
+    sendRequest("/twitter/topics", { topic: "cov" }).then((res) => {
       setTopicData(res.data.data);
     });
-  }, [])
+  }, []);
   // useEffect(() => {
   //   let domain = process.env.REQUEST_DOMAIN;
   //   if (domain === undefined) {
@@ -77,7 +76,6 @@ const PieChartComponent = ({ Flag }) => {
 
   const rightGccData = topicData[targetGcc];
 
-  console.log(rightGccData);
   //abtract the right data
   let data;
 

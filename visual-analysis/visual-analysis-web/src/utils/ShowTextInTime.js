@@ -1,40 +1,56 @@
-import axios from "axios"
-import { useState, useEffect } from "react"
-import "../css/showTextInTime.css"
+import axios from "axios";
+import { useState, useEffect } from "react";
+import "../css/showTextInTime.css";
+import { sendRequest } from "./requests";
 
-function ShowTextInTime () {
-  const textShow = "hello world"
-  const [data, setData] = useState([])
-  const [text, setText] = useState([])
+function ShowTextInTime() {
+  const [data, setData] = useState({});
+  const [userName, setUserName] = useState("");
+  const [text, setText] = useState("");
+  useEffect(() => {
+    sendRequest("/mastodon/recent").then((res) => {
+      setData(res.data.data);
+    });
+  }, []);
   // useEffect(() => {
   //   const interval = setInterval(() => {
-  //     axios.get("url").then((res) => {
-  //       setData(res.data.string)
-  //     })
+  //     sendRequest("/mastodon/recent").then((res) => {
+  //       setData(res.data.data);
+  //     });
   //   }, 1000)
   //   return () => {
   //     clearInterval(interval)
   //   }
-  // }, [])
+
+  // }, []);
   useEffect(() => {
-    axios.get("url").then((res) => {
-      setData(res.data.string)
-    })
-  }, [])
-  useEffect(() => {
-    const newText = []
-    data.map((item) => {
-      newText.push(item.text)
-    })
-    setText(newText)
-  }, [data])
+    let newUser = data.username;
+    let newText = data.content;
+    console.log(newText);
+    setUserName(newUser);
+    setText(newText);
+  }, [data]);
 
   return (
-    <div className="containerInTime">
-      <div className="textInTime">
-        Hello, world!
+    <>
+      <h1
+        style={{
+          color: "black",
+          textAlign: "center",
+          marginTop: "5%",
+          fontSize: "1px",
+        }}
+      >
+        the newest mastodon content{" "}
+      </h1>
+      <div className="containerInTime">
+        <div className="textInTime">
+          {Object.keys(data).length === 0
+            ? "Loading..."
+            : `${userName}: ${text}`}
+        </div>
       </div>
-    </div>
-  )
+    </>
+  );
 }
-export default ShowTextInTime
+export default ShowTextInTime;

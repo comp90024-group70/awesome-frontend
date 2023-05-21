@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
 import axios from "axios";
-import {sendRequest} from "./requests";
+import { sendRequest } from "./requests";
 const TreeMapComponent = ({ Flag }) => {
   //determine what is clicked
   let targetGcc = "sydney";
@@ -71,10 +71,13 @@ const TreeMapComponent = ({ Flag }) => {
     //     .then((res) => {
     //       setWcData(res.data.data);
     //     });
-    sendRequest("/twitter/treemap", {}, (res) => {
-        setWcData(res.data.data);
+    // sendRequest("/twitter/treemap", {}, (res) => {
+    //     setWcData(res.data.data);
+    // });
+    sendRequest("/twitter/treemap").then((res) => {
+      setWcData(res.data.data);
     });
-  }, [])
+  }, []);
 
   const rightGccData = wcData[targetGcc];
 
