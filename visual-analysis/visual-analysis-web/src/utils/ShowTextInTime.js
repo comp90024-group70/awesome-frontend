@@ -17,7 +17,7 @@ function ShowTextInTime () {
       sendRequest("/mastodon/recent").then((res) => {
         setData(res.data.data)
       })
-    }, 5000)
+    }, 10000)
     return () => {
       clearInterval(interval)
     }
