@@ -17,6 +17,7 @@ function Modal() {
             <h3>Zhichen Ren 1323624</h3>
             <h3>Chenghan Lin 1011576</h3>
             <h3>Xingjian Zhang 991456</h3>
+            <h3>Yinuo Sun 1045919</h3>
             {/* <h1>xxx</h1>
             <h1>xxx</h1> */}
             <button className="button" onClick={() => setShowModal(false)}>

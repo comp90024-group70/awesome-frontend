@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { animated } from "react-spring";
 import "../css/introPage.css";
+import Image from "../images/background.jpg";
+
 function IntroPage() {
   const [showModal, setShowModal] = useState(false);
 
@@ -12,8 +13,19 @@ function IntroPage() {
 
       {showModal && (
         <div className="introPage">
-          <div className="introPage-content">
-            <img src="../images/background.jpg" alt="My Image" />
+          <div
+            className="introPage-content"
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+            }}
+          >
+            <img
+              src={Image}
+              alt="Overview"
+              style={{ width: "500px", height: "500px" }}
+            />
             <button className="button" onClick={() => setShowModal(false)}>
               close
             </button>
