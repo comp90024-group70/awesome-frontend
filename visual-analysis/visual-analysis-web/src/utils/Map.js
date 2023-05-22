@@ -10,19 +10,12 @@ import { PassedFlag } from "../components/MainBox";
 
 import { useContext } from "react";
 
-// const PassedFlag = createContext({ "Melbourne": false, "Sydney": false })
 function Map() {
   const { flag, setFlag } = useContext(PassedFlag);
 
-  // useEffect(() => {
-  //   console.log(flag)
-  // }, [flag])
   return (
     <PassedFlag.Provider value={{ flag, setFlag }}>
       <div className="map">
-        {/* 定义你自己的组件
-        {/* <LeftBox val="Mel" />*/}
-        {/* <LeftBox val={flag} />  */}
         <MapContainer
           center={[-37.79763071907876, 144.95974102992008]}
           zoom={10}

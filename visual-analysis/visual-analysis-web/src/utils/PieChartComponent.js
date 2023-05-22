@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
-import axios from "axios";
 import { sendRequest } from "./requests";
 
 const PieChartComponent = ({ Flag }) => {
-  //check if melbourne is clicked or sydney is clicked
+  //check what is being clicked
   let targetGcc = "sydney";
   if (
     Flag.Melbourne === false &&
@@ -50,29 +49,6 @@ const PieChartComponent = ({ Flag }) => {
       setTopicData(res.data.data);
     });
   }, []);
-  // useEffect(() => {
-  //   let domain = process.env.REQUEST_DOMAIN;
-  //   if (domain === undefined) {
-  //     domain = 'http://172.26.131.154/';
-  //   }
-  //   axios
-  //       .get(`http://${domain}:8000/api/v1/twitter/topics?topic=cov`)
-  //       .then((res) => {
-  //         setTopicData(res.data.data);
-  //       });
-  // }, [])
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     axios
-  //       .get("http://172.26.136.13:8000//api/v1/twitter/topics?topic=cov")
-  //       .then((res) => {
-  //         setTopicData(res.data.data);
-  //       });
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
 
   const rightGccData = topicData[targetGcc];
 
@@ -92,10 +68,10 @@ const PieChartComponent = ({ Flag }) => {
   const getOption = () => {
     return {
       title: {
-        text: "Pie Chart",
+        text: "Sentiment Analysis(cities)",
         left: "center",
         textStyle: {
-          color: "#ff0000", // Set the desired title color here
+          color: "purple",
         },
       },
       tooltip: {

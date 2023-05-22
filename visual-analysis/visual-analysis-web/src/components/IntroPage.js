@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../css/introPage.css";
-import Image from "../images/background.jpg";
+import Image from "../images/overview.jpeg";
 
 function IntroPage() {
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +24,7 @@ function IntroPage() {
             <img
               src={Image}
               alt="Overview"
-              style={{ width: "500px", height: "500px" }}
+              style={{ width: "600px", height: "600px" }}
             />
             <button className="button" onClick={() => setShowModal(false)}>
               close

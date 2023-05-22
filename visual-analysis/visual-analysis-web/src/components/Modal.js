@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { animated } from "react-spring";
 import "../css/modal.css";
 function Modal() {
   const [showModal, setShowModal] = useState(false);
@@ -18,8 +17,7 @@ function Modal() {
             <h3>Chenghan Lin 1011576</h3>
             <h3>Xingjian Zhang 991456</h3>
             <h3>Yinuo Sun 1045919</h3>
-            {/* <h1>xxx</h1>
-            <h1>xxx</h1> */}
+            <h3>Chao Zheng 1436916</h3>
             <button className="button" onClick={() => setShowModal(false)}>
               close
             </button>

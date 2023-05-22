@@ -1,60 +1,5 @@
-// import React, { useEffect, useState } from "react";
-// import ReactECharts from "echarts-for-react";
-// import axios from "axios";
-
-// const HorizantalBarChartComponent = ({ data }) => {
-//   // Set the chart options
-//   const getOption = () => {
-//     return {
-//       tooltip: {
-//         trigger: "axis",
-//         axisPointer: {
-//           // Use axis to trigger tooltip
-//           type: "shadow", // 'shadow' as default; can also be 'line' or 'shadow'
-//         },
-//       },
-//       title: {
-//         text: "Horizontal Bar",
-//         left: "center",
-//         textStyle: {
-//           color: "#ff0000", // Set the desired title color here
-//         },
-//       },
-//       legend: {},
-//       grid: {
-//         left: "3%",
-//         right: "4%",
-//         bottom: "3%",
-//         containLabel: true,
-//       },
-//       xAxis: {
-//         type: "value",
-//       },
-//       yAxis: {
-//         type: "category",
-//         data: data.map((item) => item.name),
-//       },
-//       series: [
-//         {
-//           type: "bar",
-//           data: data.map((item) => item.value),
-//         },
-//       ],
-//     };
-//   };
-//   return (
-//     <ReactECharts
-//       option={getOption()}
-//       style={{ width: "100%", height: "100%" }}
-//     />
-//   );
-// };
-
-// export default HorizantalBarChartComponent;
-
 import React, { useEffect, useState } from "react";
 import ReactECharts from "echarts-for-react";
-import axios from "axios";
 import { sendRequest } from "./requests";
 const HorizantalBarChartComponent = ({ Flag }) => {
   //determine what is clicked
@@ -100,30 +45,11 @@ const HorizantalBarChartComponent = ({ Flag }) => {
   const [benefitData, setBenefitData] = useState([]);
 
   useEffect(() => {
-    // let domain = process.env.REQUEST_DOMAIN;
-    // if (domain === undefined) {
-    //   domain = 'http://172.26.131.154/';
-    // }
-    // axios
-    //     .get(`http://${domain}:8000/api/v1/sa4/family`)
-    //     .then((res) => {
-    //       setBenefitData(res.data.data);
-    //     });
     sendRequest("/sa4/family").then((res) => {
       setBenefitData(res.data.data);
     });
   }, []);
   console.log(benefitData);
-  // useEffect(() => {
-  //   const interval = setInterval(() => {
-  //     axios.get("http://172.26.136.13:8000/api/v1/sa4/family").then((res) => {
-  //       setBenefitData(res.data.data);
-  //     });
-  //   }, 1000);
-  //   return () => {
-  //     clearInterval(interval);
-  //   };
-  // }, []);
 
   const rightGccData = benefitData[targetGcc];
 
@@ -139,28 +65,26 @@ const HorizantalBarChartComponent = ({ Flag }) => {
     }));
   }
 
-  // Set the chart options
   const getOption = () => {
     return {
       tooltip: {
         trigger: "axis",
         axisPointer: {
-          // Use axis to trigger tooltip
-          type: "shadow", // 'shadow' as default; can also be 'line' or 'shadow'
+          type: "line",
         },
       },
       title: {
-        text: "Horizontal Bar",
+        text: "Average Benefit Message Count(cities)",
         left: "center",
         textStyle: {
-          color: "#ff0000", // Set the desired title color here
+          color: "purple",
         },
       },
       legend: {},
       grid: {
-        left: "3%",
-        right: "4%",
-        bottom: "3%",
+        left: "5%",
+        right: "5%",
+        bottom: "5%",
         containLabel: true,
       },
       xAxis: {
@@ -173,7 +97,8 @@ const HorizantalBarChartComponent = ({ Flag }) => {
       series: [
         {
           type: "bar",
-          data: data.map((item) => item.value),
+          data: data.map((item) => item.value.toFixed(2)),
+          color: "#0099ff",
         },
       ],
     };
