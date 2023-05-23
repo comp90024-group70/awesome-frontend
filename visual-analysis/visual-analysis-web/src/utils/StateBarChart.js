@@ -7,7 +7,7 @@ export function StateBarChart() {
   const [sentiment, setSentiment] = useState([]);
 
   useEffect(() => {
-    sendRequest("/sentiment").then((res) => {
+    sendRequest("/twitter/sentiment").then((res) => {
       setData(res.data.data);
     });
   }, []);
