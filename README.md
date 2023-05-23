@@ -20,9 +20,14 @@ And area location for Melbourne, Sydney, Perth and Brisbane are also included.
 4. Index.js: It is the place where the react component is render onto the browser.
 
 ### Package installed and used
-1.ECharts: Used to create tables and charts.
 
-2.Leaflet: Used to create the map component.
+1.React: The chosen framework.
+
+2.ECharts: Used to create tables and charts.
+
+3.Leaflet: Used to create the map component.
+
+4.axios: Ask for backend API.
 
 ### How to run project
 In order to run this project, first go to the visual-analysis-web directory.
