@@ -91,7 +91,7 @@ const PieChartComponent = ({ Flag }) => {
           name: "Nightingale Chart",
           type: "pie",
           radius: [30, 50],
-          center: ["60%", "60%"],
+          center: ["60%", "50%"],
           roseType: "area",
           data: data,
         },

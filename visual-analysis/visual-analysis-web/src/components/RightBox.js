@@ -19,6 +19,17 @@ function RightBox() {
         </div>
       </div>
       <div className="panelR">
+        <h2
+          style={{
+            color: "purple",
+            textAlign: "center",
+            marginTop: "5%",
+            fontSize: "18px",
+            fontWeight: "bold",
+          }}
+        >
+          Most Common Words(cities)
+        </h2>
         <div className="lineR">
           <TreeMapComponent Flag={flag} />
         </div>

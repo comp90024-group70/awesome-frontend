@@ -47,7 +47,7 @@ const LineChartComponent = () => {
   const getOption = () => {
     return {
       title: {
-        text: "Job and family related Twitters Data",
+        text: "Job and Family Related Twitter Data",
         left: "center",
         textStyle: {
           color: "purple",

@@ -66,14 +66,14 @@ const TreeMapComponent = ({ Flag }) => {
 
   const getOption = () => {
     return {
-      title: {
-        text: "Most Common Words(cities)",
-        left: "center",
-        top: "10px",
-        textStyle: {
-          color: "purple",
-        },
-      },
+      // title: {
+      //   text: "Most Common Words(cities)",
+      //   left: "center",
+      //   top: "10px",
+      //   textStyle: {
+      //     color: "purple",
+      //   },
+      // },
       series: [
         {
           type: "treemap",
@@ -96,7 +96,7 @@ const TreeMapComponent = ({ Flag }) => {
   return (
     <ReactECharts
       option={getOption()}
-      style={{ width: "100%", height: "100%" }}
+      style={{ width: "100%", height: "90%" }}
     />
   );
 };
