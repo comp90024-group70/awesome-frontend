@@ -2,7 +2,7 @@
 FROM node:19-alpine as build
 WORKDIR /app
 COPY package.json package-lock.json ./
-RUN npm install
+RUN npm ci
 COPY . .
 ARG REACT_APP_REQUEST_DOMAIN
 ENV REACT_APP_REQUEST_DOMAIN $REACT_APP_REQUEST_DOMAIN
