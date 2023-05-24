@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../css/introPage.css";
-import Image from "../images/overview.jpeg";
+import Image from "../images/overview.png";
 
 function IntroPage() {
   const [showModal, setShowModal] = useState(false);
