@@ -8,7 +8,6 @@ function MidBox() {
   const [mastodonCount, setMastodonCount] = useState(0);
   useEffect(() => {
     sendRequest("/twitter/count").then((res) => {
-      console.log(res);
       setTwitterCount(res.data.data.count);
     });
   }, []);

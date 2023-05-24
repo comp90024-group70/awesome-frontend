@@ -7,9 +7,7 @@ import ShowTextInTime from "../utils/ShowTextInTime";
 
 function LeftBox() {
   const { flag } = useContext(PassedFlag);
-  useEffect(() => {
-    console.log(flag);
-  }, [flag]);
+  useEffect(() => {}, [flag]);
 
   let ExactBarChartL;
   ExactBarChartL = StateBarChart;

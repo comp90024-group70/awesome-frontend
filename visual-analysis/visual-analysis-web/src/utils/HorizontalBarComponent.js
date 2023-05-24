@@ -49,7 +49,6 @@ const HorizantalBarChartComponent = ({ Flag }) => {
       setBenefitData(res.data.data);
     });
   }, []);
-  console.log(benefitData);
 
   const rightGccData = benefitData[targetGcc];
 
@@ -74,7 +73,7 @@ const HorizantalBarChartComponent = ({ Flag }) => {
         },
       },
       title: {
-        text: "Average Benefit Message Count(cities)",
+        text: "Benefit Recipients Count(cities)",
         left: "center",
         textStyle: {
           color: "purple",

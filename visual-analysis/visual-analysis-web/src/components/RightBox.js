@@ -7,9 +7,7 @@ import HorizantalBarChartComponent from "../utils/HorizontalBarComponent";
 
 function RightBox() {
   const { flag } = useContext(PassedFlag);
-  useEffect(() => {
-    console.log(flag);
-  }, [flag]);
+  useEffect(() => {}, [flag]);
 
   return (
     <div className="rightBox">

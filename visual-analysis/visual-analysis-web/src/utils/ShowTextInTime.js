@@ -8,14 +8,34 @@ function ShowTextInTime() {
   const [text, setText] = useState("");
   useEffect(() => {
     const interval = setInterval(() => {
-      sendRequest("/mastodon/recent").then((res) => {
-        setData(res.data.data);
-      });
+      sendRequest("/mastodon/recent")
+        .then((res) => {
+          if (res.status === 200) {
+            // Request was successful
+            setData(res.data.data);
+            console.log(res.status);
+          } else {
+            // Handle other status codes
+            setData({
+              username: "Mastodon is done!",
+              content: "error",
+            });
+          }
+        })
+        .catch((error) => {
+          // Handle network or other errors without logging to the console
+          setData({
+            username: "Error",
+            content: "Mastodon is down",
+          });
+        });
     }, 10000);
+
     return () => {
       clearInterval(interval);
     };
   }, []);
+
   useEffect(() => {
     let newUser = data.username;
     let newText = data.content;
