@@ -66,14 +66,6 @@ const TreeMapComponent = ({ Flag }) => {
 
   const getOption = () => {
     return {
-      // title: {
-      //   text: "Most Common Words(cities)",
-      //   left: "center",
-      //   top: "10px",
-      //   textStyle: {
-      //     color: "purple",
-      //   },
-      // },
       series: [
         {
           type: "treemap",

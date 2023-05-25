@@ -3,7 +3,7 @@ import axios from "axios";
 const getDomain = () => {
   let domain = process.env.REACT_APP_REQUEST_DOMAIN;
   if (domain === undefined) {
-    domain = "172.26.131.154";
+    domain = "172.26.131.39";
   }
   return domain;
 };
