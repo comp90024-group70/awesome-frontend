@@ -1,27 +1,40 @@
-import "../css/midBox.css";
-import Map from "../utils/Map";
-import { sendRequest } from "../utils/requests";
-import { useEffect, useState } from "react";
+import "../css/midBox.css"
+import Map from "../utils/Map"
+import { sendRequest } from "../utils/requests"
+import { useEffect, useState } from "react"
 
-function MidBox() {
-  const [twitterCount, setTwitterCount] = useState(0);
-  const [mastodonCount, setMastodonCount] = useState(0);
+function MidBox () {
+  const [twitterCount, setTwitterCount] = useState(0)
+  const [mastodonCount, setMastodonCount] = useState(0)
   useEffect(() => {
     sendRequest("/twitter/count").then((res) => {
-      setTwitterCount(res.data.data.count);
-    });
-  }, []);
+      setTwitterCount(res.data.data.count)
+    })
+  }, [])
 
   useEffect(() => {
     const interval = setInterval(() => {
       sendRequest("/mastodon/count").then((res) => {
-        setMastodonCount(res.data.data.count);
-      });
-    }, 5000);
+        if (res.data.stauts === 200) {
+          setMastodonCount(res.data.data.count)
+          console.log(res.data.suatus)
+        }
+        else {
+
+          throw new Error("Mastodon is down")
+        }
+
+      })
+        .catch((error) => {
+          if (error.message === "Mastodon is down") {
+            setMastodonCount(0)
+          }
+        })
+    }, 5000)
     return () => {
-      clearInterval(interval);
-    };
-  }, []);
+      clearInterval(interval)
+    }
+  }, [])
   return (
     <div className="midBox">
       <div className="number">
@@ -40,7 +53,7 @@ function MidBox() {
       </div>
       <Map />
     </div>
-  );
+  )
 }
 
-export default MidBox;
+export default MidBox

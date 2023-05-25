@@ -1,51 +1,51 @@
-import { useState, useEffect } from "react";
-import "../css/showTextInTime.css";
-import { sendRequest } from "./requests";
+import { useState, useEffect } from "react"
+import "../css/showTextInTime.css"
+import { sendRequest } from "./requests"
 
-function ShowTextInTime() {
-  const [data, setData] = useState({});
-  const [userName, setUserName] = useState("");
-  const [text, setText] = useState("");
+function ShowTextInTime () {
+  const [data, setData] = useState({})
+  const [userName, setUserName] = useState("")
+  const [text, setText] = useState("")
   useEffect(() => {
     const interval = setInterval(() => {
       sendRequest("/mastodon/recent")
         .then((res) => {
-          if (res.status === 200) {
+          if (res.data.status === 200) {
             // Request was successful
-            setData(res.data.data);
-            console.log(res.status);
+            setData(res.data.data)
+            console.log(res.data.status)
           } else {
             // Handle other status codes
-            setData({
-              username: "Mastodon is done!",
-              content: "error",
-            });
+            throw new Error("Mastodon is down")
           }
         })
         .catch((error) => {
+          if (error.message === "Mastodon is down") {
+            setData({
+              username: "Error",
+              content: "Mastodon is down",
+            })
+          }
           // Handle network or other errors without logging to the console
-          setData({
-            username: "Error",
-            content: "Mastodon is down",
-          });
-        });
-    }, 10000);
+
+        })
+    }, 10000)
 
     return () => {
-      clearInterval(interval);
-    };
-  }, []);
+      clearInterval(interval)
+    }
+  }, [])
 
   useEffect(() => {
-    let newUser = data.username;
-    let newText = data.content;
+    let newUser = data.username
+    let newText = data.content
 
     if (newText && newText.length > 100) {
-      newText = newText.slice(0, 100) + "...";
+      newText = newText.slice(0, 100) + "..."
     }
-    setUserName(newUser);
-    setText(newText);
-  }, [data]);
+    setUserName(newUser)
+    setText(newText)
+  }, [data])
 
   return (
     <>
@@ -67,6 +67,6 @@ function ShowTextInTime() {
         </div>
       </div>
     </>
-  );
+  )
 }
-export default ShowTextInTime;
+export default ShowTextInTime
